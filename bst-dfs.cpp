@@ -28,26 +28,40 @@ public:
     }
     void build_binary_tree()
     {
-        node *allNode[6];
-        for (int i = 0; i < 6; i++)
-        {
-            allNode[i] = CreateNewNode(i);
-        }
+        node *allNode[9];
+        // for (int i = 0; i < 6; i++)
+        // {
+        //     allNode[i] = CreateNewNode(i, i * 2);
+        // }
+        allNode[0] = CreateNewNode(20);
+        allNode[1] = CreateNewNode(10);
+        allNode[2] = CreateNewNode(22);
+        allNode[3] = CreateNewNode(5);
+        allNode[4] = CreateNewNode(12);
+        allNode[5] = CreateNewNode(21);
+        allNode[6] = CreateNewNode(25);
+        allNode[7] = CreateNewNode(3);
+        allNode[8] = CreateNewNode(15);
+
         allNode[0]->Left = allNode[1];
         allNode[0]->Right = allNode[2];
 
-        allNode[1]->Left = allNode[5];
+        allNode[1]->Left = allNode[3];
+        allNode[1]->Right = allNode[4];
         allNode[1]->Parent = allNode[0];
+        allNode[3]->Parent = allNode[1];
+        allNode[4]->Parent = allNode[1];
 
-        allNode[2]->Left = allNode[3];
-        allNode[2]->Right = allNode[4];
+        allNode[2]->Left = allNode[5];
+        allNode[2]->Right = allNode[6];
         allNode[2]->Parent = allNode[0];
+        allNode[5]->Parent = allNode[2];
+        allNode[6]->Parent = allNode[2];
 
-        allNode[5]->Parent = allNode[1];
-
-        allNode[3]->Parent = allNode[2];
-
-        allNode[4]->Parent = allNode[2];
+        allNode[3]->Left = allNode[7];
+        allNode[3]->Right = allNode[8];
+        allNode[7]->Parent = allNode[3];
+        allNode[8]->Parent = allNode[3];
         Root = allNode[0];
     }
     void preorder_traversel(node *a)

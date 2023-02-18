@@ -30,26 +30,40 @@ public:
     }
     void build_binary_tree()
     {
-        node *allNode[6];
-        for (int i = 0; i < 6; i++)
-        {
-            allNode[i] = CreateNewNode(i, i * 2);
-        }
+        node *allNode[9];
+        // for (int i = 0; i < 6; i++)
+        // {
+        //     allNode[i] = CreateNewNode(i, i * 2);
+        // }
+        allNode[0] = CreateNewNode(0, 20);
+        allNode[1] = CreateNewNode(1, 10);
+        allNode[2] = CreateNewNode(2, 22);
+        allNode[3] = CreateNewNode(3, 5);
+        allNode[4] = CreateNewNode(4, 12);
+        allNode[5] = CreateNewNode(5, 21);
+        allNode[6] = CreateNewNode(6, 25);
+        allNode[7] = CreateNewNode(7, 3);
+        allNode[8] = CreateNewNode(8, 15);
+
         allNode[0]->Left = allNode[1];
         allNode[0]->Right = allNode[2];
 
-        allNode[1]->Left = allNode[5];
+        allNode[1]->Left = allNode[3];
+        allNode[1]->Right = allNode[4];
         allNode[1]->Parent = allNode[0];
+        allNode[3]->Parent = allNode[1];
+        allNode[4]->Parent = allNode[1];
 
-        allNode[2]->Left = allNode[3];
-        allNode[2]->Right = allNode[4];
+        allNode[2]->Left = allNode[5];
+        allNode[2]->Right = allNode[6];
         allNode[2]->Parent = allNode[0];
+        allNode[5]->Parent = allNode[2];
+        allNode[6]->Parent = allNode[2];
 
-        allNode[5]->Parent = allNode[1];
-
-        allNode[3]->Parent = allNode[2];
-
-        allNode[4]->Parent = allNode[2];
+        allNode[3]->Left = allNode[7];
+        allNode[3]->Right = allNode[8];
+        allNode[7]->Parent = allNode[3];
+        allNode[8]->Parent = allNode[3];
         Root = allNode[0];
     }
     void bfs_traversel()
@@ -64,18 +78,18 @@ public:
             q.pop();
             int p = -1, l = -1, r = -1;
             if (frontPart->Parent)
-                p = frontPart->Parent->id;
+                p = frontPart->Parent->value;
             if (frontPart->Left)
             {
-                l = frontPart->Left->id;
+                l = frontPart->Left->value;
                 q.push(frontPart->Left);
             };
             if (frontPart->Right)
             {
-                r = frontPart->Right->id;
+                r = frontPart->Right->value;
                 q.push(frontPart->Right);
             }
-            cout << "Node id = " << frontPart->id << " Parent = " << p << " Left Child = " << l << " Right Child = " << r << endl;
+            cout << "Node id = " << frontPart->value << " Parent = " << p << " Left Child = " << l << " Right Child = " << r << endl;
         }
     }
     void Insert(int id, int value)
@@ -131,15 +145,7 @@ public:
 int main()
 {
     BinaryTree bt;
-    bt.Insert(0, 5);
-    bt.Insert(1, 10);
-    bt.Insert(2, 15);
-    bt.Insert(3, 9);
-    bt.Insert(4, 5);
-    bt.Insert(5, 19);
-    bt.Insert(6, 9);
-    bt.Search(bt.Root, 5);
-    cout << endl;
-    bt.Search(bt.Root, 10);
+    bt.build_binary_tree();
+    bt.bfs_traversel();
     return 0;
 }
